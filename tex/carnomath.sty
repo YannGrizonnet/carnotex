@@ -1,0 +1,79 @@
+%=================================================
+% carnomath.sty
+% Commandes mathématiques personnelles
+%=================================================
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{carnomath}[2026/06/30 v0.1 Commandes mathématiques]
+
+\RequirePackage{amsmath,amsfonts,amssymb}
+\RequirePackage[locale=FR]{siunitx}
+\RequirePackage{eurosym}
+\RequirePackage{tkz-tab}
+\usetikzlibrary{
+  calc,
+  arrows.meta,
+  positioning,
+  decorations.pathreplacing,
+  patterns,
+  shapes.geometric
+}
+
+%=================================================
+% Ensembles
+%=================================================
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Cp}{\mathbb{C}}
+
+%=================================================
+% Constantes et opérateurs
+%=================================================
+
+\newcommand{\ii}{\mathrm{i}}
+\DeclareMathOperator{\e}{e}
+
+%=================================================
+% Vecteurs et coordonnées
+%=================================================
+
+\newcommand{\vc}[1]{%
+  \overrightarrow{\,\mathstrut#1\,}%
+}
+
+\newcommand{\coord}[2]{%
+  \left(\begin{array}{c}
+    #1\\
+    #2
+  \end{array}\right)%
+}
+
+\newcommand{\coor}[3]{%
+  \left(\begin{array}{c}
+    #1\\
+    #2\\
+    #3
+  \end{array}\right)%
+}
+
+\newcommand{\vct}[3]{%
+  \vc{#1}\coord{#2}{#3}%
+}
+
+\newcommand{\Oij}{%
+  $\left(O~;~\vc{\imath},~\vc{\jmath}\right)$%
+}
+
+\newcommand{\Oijk}{%
+  $\left(O~;~\vc{\imath},~\vc{\jmath},~\vc{k}\right)$%
+}
+
+%=================================================
+% Fin
+%=================================================
+
+\endinput

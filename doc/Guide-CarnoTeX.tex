@@ -1,0 +1,1047 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Guide de référence CarnoTeX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+
+\usepackage[all]{carnotex}
+\level{notes}
+
+%=================================================
+% Commandes propres au guide
+%=================================================
+
+\newcommand{\pkg}[1]{\texttt{#1}}
+\newcommand{\cmd}[1]{\texttt{\char`\\#1}}
+\newcommand{\argu}[1]{\texttt{\char`\{#1\char`\}}}
+\newcommand{\opt}[1]{\texttt{[#1]}}
+
+\newcommand{\syntaxe}[1]{%
+  \par\noindent
+  \texttt{\detokenize{#1}}%
+  \par
+}
+
+\NewDocumentEnvironment{commande}{m m +b}{%
+  \subsection{\cmd{#1}}
+  \cadre{CarnoGrey}[Package]{\pkg{#2}}
+  #3
+}{}
+
+\NewDocumentCommand{\Syntaxe}{+m}{%
+  \Cbox{CarnoDef}{Syntaxe}{#1}
+}
+
+\NewDocumentCommand{\Arguments}{+m}{%
+  \Cbox{CarnoRem}{Arguments et options}{#1}
+}
+
+\NewDocumentCommand{\Usage}{+m}{%
+  \Cbox{CarnoProp}{Philosophie d'usage}{#1}
+}
+
+\NewDocumentCommand{\Exemple}{+m}{%
+  \Cbox{CarnoExe}{Exemple de rendu}{#1}
+}
+
+%=================================================
+% Document
+%=================================================
+
+\title{Guide de référence\\\Large CarnoTeX}
+\author{Yann Grizonnet}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Présentation générale}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+CarnoTeX est un ensemble de packages personnels destinés à produire des documents mathématiques et pédagogiques cohérents.
+
+\Cbox{CarnoDef}{Architecture générale}{
+\begin{itemize}
+  \item \pkg{carnotex.sty} : mise en forme générale ;
+  \item \pkg{carnomath.sty} : commandes mathématiques et environnements ;
+  \item \pkg{carnopeda.sty} : outils pédagogiques et gestion des versions ;
+  \item \pkg{carnolegacy.sty} : compatibilité avec les anciens documents.
+\end{itemize}
+}
+
+\Cbox{CarnoProp}{Options de chargement}{
+\begin{itemize}
+  \item \cmd{usepackage}\argu{carnotex} : noyau seul ;
+  \item \cmd{usepackage}\opt{math}\argu{carnotex} : noyau + mathématiques ;
+  \item \cmd{usepackage}\opt{peda}\argu{carnotex} : noyau + pédagogie ;
+  \item \cmd{usepackage}\opt{legacy}\argu{carnotex} : noyau + compatibilité ;
+  \item \cmd{usepackage}\opt{all}\argu{carnotex} : tout charger.
+\end{itemize}
+}
+
+\Cbox{CarnoRem}{Niveaux de document}{
+Les niveaux permettent de produire plusieurs versions d'un même document.
+
+\begin{itemize}
+  \item \cmd{level}\argu{eleve} : version distribuée aux élèves ;
+  \item \cmd{level}\argu{prof} : version professeur ;
+  \item \cmd{level}\argu{notes} : version professeur enrichie avec notes, TODO, sources et temps.
+\end{itemize}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Palette graphique}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Palette de base}
+
+\noindent
+\begin{tikzpicture}
+  \foreach \couleur/\i in {
+    CarnoBlue/0,
+    CarnoCyan/1,
+    CarnoGreen/2,
+    CarnoYellow/3,
+    CarnoOrange/4,
+    CarnoRed/5,
+    CarnoPurple/6,
+    CarnoGrey/7
+  }{
+    \fill[\couleur] ({\i*\linewidth/8},0)
+      rectangle ({(\i+1)*\linewidth/8},1.1);
+    \node[anchor=north,font=\scriptsize\ttfamily]
+      at ({(\i+0.5)*\linewidth/8},-0.15) {\couleur};
+  }
+\end{tikzpicture}
+
+\bigskip
+
+\subsection{Couleurs sémantiques}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|c|l|}
+\hline
+\textbf{Couleur} & \textbf{Usage} \\
+\hline
+\colorbox{CarnoDef}{\color{white}\rule{2cm}{0.3cm}} & \texttt{CarnoDef} : définitions \\
+\hline
+\colorbox{CarnoProp}{\color{white}\rule{2cm}{0.3cm}} & \texttt{CarnoProp} : propriétés, lemmes, corollaires \\
+\hline
+\colorbox{CarnoThm}{\color{white}\rule{2cm}{0.3cm}} & \texttt{CarnoThm} : théorèmes \\
+\hline
+\colorbox{CarnoExe}{\color{white}\rule{2cm}{0.3cm}} & \texttt{CarnoExe} : exemples \\
+\hline
+\colorbox{CarnoExo}{\color{white}\rule{2cm}{0.3cm}} & \texttt{CarnoExo} : exercices \\
+\hline
+\colorbox{CarnoPrb}{\color{white}\rule{2cm}{0.3cm}} & \texttt{CarnoPrb} : problèmes \\
+\hline
+\colorbox{CarnoRem}{\color{white}\rule{2cm}{0.3cm}} & \texttt{CarnoRem} : remarques \\
+\hline
+\colorbox{CarnoDem}{\color{white}\rule{2cm}{0.3cm}} & \texttt{CarnoDem} : démonstrations \\
+\hline
+\colorbox{CarnoSol}{\color{white}\rule{2cm}{0.3cm}} & \texttt{CarnoSol} : solutions \\
+\hline
+\end{tabular}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Commandes de mise en forme}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{commande}{cadre}{carnotex}
+
+\Syntaxe{
+\syntaxe{\cadre{couleur}{contenu}}
+\syntaxe{\cadre{couleur}[titre]{contenu}}
+}
+
+\Arguments{
+\begin{itemize}
+  \item \texttt{couleur} : couleur du cadre ;
+  \item \texttt{titre} : titre optionnel ;
+  \item \texttt{contenu} : texte du cadre.
+\end{itemize}
+}
+
+\Usage{
+Produit un cadre coloré. Le titre optionnel apparaît au-dessus du cadre.
+}
+
+\Exemple{
+\cadre{CarnoDef}[Définition importante]{
+Voici un cadre avec titre.
+}
+
+\cadre{CarnoProp}{
+Voici un cadre sans titre avec un texte plus long, sur plusieurs lignes.
+
+Comportant même plusieurs paragraphes. Comportant même plusieurs paragraphes. Comportant même plusieurs paragraphes. Comportant même plusieurs paragraphes. Comportant même plusieurs paragraphes. Comportant même plusieurs paragraphes. Comportant même plusieurs paragraphes. Comportant même plusieurs paragraphes. Comportant même plusieurs paragraphes. Comportant même plusieurs paragraphes. Comportant même plusieurs paragraphes. Comportant même plusieurs paragraphes. Comportant même plusieurs paragraphes. Comportant même plusieurs paragraphes. 
+}
+}
+
+\end{commande}
+
+\begin{commande}{Cbox}{carnotex}
+
+\Syntaxe{
+\syntaxe{\Cbox{couleur}{titre}{contenu}}
+}
+
+\Arguments{
+\begin{itemize}
+  \item \texttt{couleur} : couleur du bloc ;
+  \item \texttt{titre} : titre du bloc ;
+  \item \texttt{contenu} : contenu du bloc.
+\end{itemize}
+}
+
+\Usage{
+Bloc documentaire léger. Il sert à mettre en valeur un commentaire, une méthode ou une remarque structurante.
+}
+
+\Exemple{
+\Cbox{CarnoIdea}{Méthode}{
+Voici un bloc documentaire. C'est celui qui est utilisé pour détailler la syntaxe, les arguments et options, la philosophie d'usage et les exemples de rendu des commandes de mise en forme.
+}
+}
+
+\end{commande}
+
+\begin{commande}{colorline}{carnotex}
+
+\Syntaxe{
+\syntaxe{\colorline}
+\syntaxe{\colorline[couleur]}
+\syntaxe{\colorline*[couleur][longueur][épaisseur]}
+}
+
+\Arguments{
+\begin{itemize}
+  \item étoile : centre le trait ;
+  \item couleur : noire par défaut ;
+  \item longueur : \cmd{linewidth} par défaut ;
+  \item épaisseur : \texttt{0.5pt} par défaut.
+\end{itemize}
+}
+
+\Usage{
+Trace une ligne horizontale structurante. La version étoilée centre le trait.
+}
+
+\Exemple{
+\colorline[CarnoProp]
+
+\colorline*[CarnoThm][6cm][2pt]
+}
+
+\end{commande}
+
+\begin{commande}{histo}{carnotex}
+
+\Syntaxe{
+\syntaxe{\histo{contenu}}
+}
+
+\Arguments{
+Un unique argument contenant le texte.
+}
+
+\Usage{
+Met en valeur une remarque historique ou culturelle.
+}
+
+\Exemple{
+\histo{
+Ératosthène est né vers 276 av. J.-C. à Cyrène et mort vers 194 av. J.-C. à Alexandrie.
+}
+}
+
+\end{commande}
+
+\begin{commande}{bordure}{carnotex}
+
+\Syntaxe{
+\syntaxe{\bordure{titre}}
+\syntaxe{\bordure[couleur]{titre}}
+}
+
+\Arguments{
+\begin{itemize}
+  \item \texttt{couleur} : couleur optionnelle du bandeau ;
+  \item \texttt{titre} : texte affiché verticalement.
+\end{itemize}
+}
+
+\Usage{
+Affiche une bande verticale colorée sur le bord droit des pages suivantes.
+}
+
+\Exemple{
+\bordure[CarnoThm]{Transformée de Fourier}
+}
+\end{commande}
+\bordure[CarnoThm]{Exemple de bordure. Maintenue jusqu'à déclaration d'une nouvelle.} % insérée hors \commande sinon pas prise en compte.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Théorèmes et commandes mathématiques}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{commande}{df}{carnomath}
+
+\Syntaxe{
+\syntaxe{\df{contenu}}
+\syntaxe{\df*{contenu}}
+}
+
+\Arguments{
+\begin{itemize}
+  \item \texttt{contenu} : texte de la définition ;
+  \item version étoilée : définition encadrée.
+\end{itemize}
+}
+
+\Usage{
+Présente une définition. La version étoilée utilise un cadre coloré tout en conservant la numérotation.
+}
+
+\Exemple{
+\df{
+Une fonction affine est une fonction de la forme $f(x)=ax+b$.
+}
+
+\df*{
+Une fonction linéaire est une fonction affine vérifiant $b=0$.
+}
+}
+
+\end{commande}
+
+\begin{commande}{prop}{carnomath}
+
+\Syntaxe{
+\syntaxe{\prop{contenu}}
+\syntaxe{\prop*{contenu}}
+}
+
+\Arguments{
+\begin{itemize}
+  \item \texttt{contenu} : texte de la propriété ;
+  \item version étoilée : propriété encadrée.
+\end{itemize}
+}
+
+\Usage{
+Énonce un résultat utilisable. La version étoilée met davantage en valeur une propriété importante.
+}
+
+\Exemple{
+\prop{
+Toute fonction affine est continue sur $\R$.
+}
+
+\prop*{
+La somme de deux fonctions continues est continue.
+}
+}
+
+\end{commande}
+
+\begin{commande}{thrm}{carnomath}
+
+\Syntaxe{
+\syntaxe{\thrm{contenu}}
+\syntaxe{\thrm*{contenu}}
+}
+
+\Arguments{
+\begin{itemize}
+  \item \texttt{contenu} : texte du théorème ;
+  \item version étoilée : théorème encadré.
+\end{itemize}
+}
+
+\Usage{
+Présente un résultat fondamental.
+}
+
+\Exemple{
+\thrm{
+Toute matrice symétrique réelle est diagonalisable.
+}
+
+\thrm*{
+Théorème de Pythagore.
+}
+}
+
+\end{commande}
+
+\begin{commande}{lem}{carnomath}
+
+\Syntaxe{
+\syntaxe{\lem{contenu}}
+\syntaxe{\lem*{contenu}}
+}
+
+\Arguments{
+\begin{itemize}
+  \item \texttt{contenu} : texte du lemme ;
+  \item version étoilée : lemme encadré.
+\end{itemize}
+}
+
+\Usage{
+Présente un résultat intermédiaire utilisé dans une démonstration.
+}
+
+\Exemple{
+\lem{
+Ce résultat sera utilisé dans la preuve du théorème suivant.
+}
+
+\lem*{
+L'application considérée est injective.
+}
+}
+
+\end{commande}
+
+\begin{commande}{coro}{carnomath}
+
+\Syntaxe{
+\syntaxe{\coro{contenu}}
+\syntaxe{\coro*{contenu}}
+}
+
+\Arguments{
+\begin{itemize}
+  \item \texttt{contenu} : texte du corollaire ;
+  \item version étoilée : corollaire encadré.
+\end{itemize}
+}
+
+\Usage{
+Présente une conséquence immédiate d'un résultat précédent.
+}
+
+\Exemple{
+\coro{
+Toute matrice orthogonale est inversible.
+}
+
+\coro*{
+Toute isométrie conserve les distances.
+}
+}
+
+\end{commande}
+
+\bordure[CarnoDef]{Nouvelle bordure}
+
+\begin{commande}{exe}{carnomath}
+
+\Syntaxe{
+\syntaxe{\exe{contenu}}
+}
+
+\Arguments{
+Un unique argument contenant le texte de l'exemple.
+}
+
+\Usage{
+Présente un exemple illustrant une définition, une propriété ou un théorème.
+}
+
+\Exemple{
+\exe{
+La fonction $f(x)=2x+3$ est une fonction affine.
+}
+}
+
+\end{commande}
+
+\begin{commande}{exo}{carnomath}
+
+\Syntaxe{
+\syntaxe{\exo{contenu}}
+}
+
+\Arguments{
+Un unique argument contenant l'énoncé.
+}
+
+\Usage{
+Présente un exercice simple. Pour les exercices numérotés avec difficulté et points, préférer \cmd{exobandeau}.
+}
+
+\Exemple{
+\exo{
+Résoudre l'équation $2x+3=7$.
+}
+}
+
+\end{commande}
+
+\begin{commande}{prb}{carnomath}
+
+\Syntaxe{
+\syntaxe{\prb{contenu}}
+}
+
+\Arguments{
+Un unique argument contenant l'énoncé.
+}
+
+\Usage{
+Présente un problème plus ouvert qu'un exercice classique.
+}
+
+\Exemple{
+\prb{
+Déterminer toutes les fonctions affines vérifiant une condition donnée.
+}
+}
+
+\end{commande}
+
+\begin{commande}{rem}{carnomath}
+
+\Syntaxe{
+\syntaxe{\rem{contenu}}
+}
+
+\Arguments{
+Un unique argument.
+}
+
+\Usage{
+Ajoute une remarque ou une précision.
+}
+
+\Exemple{
+\rem{
+Le coefficient directeur peut être nul.
+}
+}
+
+\end{commande}
+
+\begin{commande}{dem}{carnomath}
+
+\Syntaxe{
+\syntaxe{\dem{contenu}}
+}
+
+\Arguments{
+Un unique argument.
+}
+
+\Usage{
+Présente une démonstration. La commande \cmd{cqfd} peut être utilisée pour conclure.
+}
+
+\Exemple{
+\dem{
+On développe puis on simplifie.
+
+\cqfd
+}
+}
+
+\end{commande}
+
+\begin{commande}{sol}{carnomath}
+
+\Syntaxe{
+\syntaxe{\sol{contenu}}
+}
+
+\Arguments{
+Un unique argument.
+}
+
+\Usage{
+Présente une solution rédigée d'exercice ou de problème.
+}
+
+\Exemple{
+\sol{
+On obtient finalement $x=2$.
+}
+
+}
+
+\end{commande}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Commandes mathématiques courtes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{commande}{Ensembles de nombres}{carnomath}
+
+\Syntaxe{
+\syntaxe{\[\N,\quad \Z,\quad \D,\quad \Q,\quad \R,\quad \Cp\]}
+}
+
+\Arguments{
+Ces commandes ne prennent aucun argument.
+}
+
+\Usage{
+Commandes courtes pour écrire les ensembles usuels.
+
+Elles évitent de répéter \cmd{mathbb} dans les documents.
+}
+
+\Exemple{
+\[
+\N,\quad \Z,\quad \D,\quad \Q,\quad \R,\quad \Cp
+\]
+}
+
+\end{commande}
+
+\begin{commande}{Vecteurs et coordonnées}{carnomath}
+
+\Syntaxe{
+\syntaxe{\[
+\vc{AB}
+\qquad
+\coord{2}{3}
+\qquad
+\coor{1}{2}{3}
+\qquad
+\vct{u}{2}{-1}
+\]}
+}
+
+\Usage{
+Commandes abrégées pour écrire rapidement des vecteurs et des coordonnées.
+}
+
+\Exemple{
+\[
+\vc{AB}
+\qquad
+\coord{2}{3}
+\qquad
+\coor{1}{2}{3}
+\qquad
+\vct{u}{2}{-1}
+\]
+}
+
+\end{commande}
+
+\begin{commande}{Repères}{carnomath}
+
+\Syntaxe{
+\syntaxe{\Oij}
+\syntaxe{\Oijk}
+}
+
+\Usage{
+Commandes permettant de composer rapidement les notations usuelles des repères du plan et de l'espace.
+}
+
+\Exemple{
+\Oij
+
+\Oijk
+}
+
+\end{commande}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercices}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{commande}{exobandeau}{carnotex}
+
+\Syntaxe{
+\syntaxe{\exobandeau{titre}{difficulté}}
+\syntaxe{\exobandeau[points]{titre}{difficulté}}
+}
+
+\Arguments{
+\begin{itemize}
+  \item \texttt{points} : nombre de points optionnel ;
+  \item \texttt{titre} : titre de l'exercice ;
+  \item \texttt{difficulté} : entier de 1 à 5.
+\end{itemize}
+}
+
+\Usage{
+Crée un bandeau d'exercice numéroté, avec difficulté et points éventuels en marge.
+}
+
+\Exemple{
+\exobandeau{Calcul direct}{2}
+
+Énoncé de l'exercice.
+
+\exobandeau[5]{Problème guidé}{4}
+
+Énoncé de l'exercice.
+}
+
+\end{commande}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Outils pédagogiques}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{commande}{level}{carnopeda}
+
+\Syntaxe{
+\syntaxe{\level{eleve}}
+\syntaxe{\level{prof}}
+\syntaxe{\level{notes}}
+}
+
+\Arguments{
+Un argument obligatoire : \texttt{eleve}, \texttt{prof} ou \texttt{notes}.
+}
+
+\Usage{
+Sélectionne la version du document à compiler.
+}
+
+\Exemple{
+Selon l'argument un même document affichera l'ensemble des informations (\texttt{notes}), seulement ce qui est utile au professeur pendant le cours (\texttt{prof}) ou le contenu du cours seul (\texttt{eleve}).
+
+\textit{Voir les sous-sections suivantes : obj, pre, idee, piege, retenir, note, source, experiencec, todo et temps.}
+}
+
+\end{commande}
+
+\begin{commande}{obj}{carnopeda}
+
+\Syntaxe{
+\syntaxe{\obj{contenu}}
+}
+
+\Arguments{
+Un unique argument contenant les objectifs.
+}
+
+\Usage{
+Présente les objectifs de la séance. Visible en version professeur et notes.
+}
+
+\Exemple{
+\obj{
+Savoir calculer une transformée de Fourier simple.
+}
+}
+
+\end{commande}
+
+\begin{commande}{pre}{carnopeda}
+
+\Syntaxe{
+\syntaxe{\pre{contenu}}
+}
+
+\Arguments{
+Un unique argument contenant les prérequis.
+}
+
+\Usage{
+Liste les prérequis pour l'enseignant.
+}
+
+\Exemple{
+\pre{
+Connaître les intégrales impropres.
+}
+}
+
+\end{commande}
+
+\begin{commande}{idee}{carnopeda}
+
+\Syntaxe{
+\syntaxe{\idee{contenu}}
+}
+
+\Arguments{
+Un unique argument.
+}
+
+\Usage{
+Met en avant une idée pédagogique. Visible en version professeur et notes.
+}
+
+\Exemple{
+\idee{
+Faire le lien entre série de Fourier et transformée de Fourier.
+}
+}
+
+\end{commande}
+
+\begin{commande}{piege}{carnopeda}
+
+\Syntaxe{
+\syntaxe{\piege{contenu}}
+}
+
+\Arguments{
+Un unique argument.
+}
+
+\Usage{
+Signale une erreur fréquente.
+}
+
+\Exemple{
+\piege{
+Ne pas confondre fréquence et pulsation.
+}
+}
+
+\end{commande}
+
+\begin{commande}{retenir}{carnopeda}
+
+\Syntaxe{
+\syntaxe{\retenir{contenu}}
+}
+
+\Arguments{
+Un unique argument.
+}
+
+\Usage{
+Point essentiel à mémoriser. Visible dans toutes les versions.
+}
+
+\Exemple{
+\retenir{
+La transformée de Fourier permet de passer du temps aux fréquences.
+}
+}
+
+\end{commande}
+
+\begin{commande}{note}{carnopeda}
+
+\Syntaxe{
+\syntaxe{\note{contenu}}
+\syntaxe{\note[titre]{contenu}}
+}
+
+\Arguments{
+\begin{itemize}
+  \item \texttt{titre} : optionnel ;
+  \item \texttt{contenu} : note personnelle.
+\end{itemize}
+}
+
+\Usage{
+Note personnelle de préparation. Visible uniquement en version notes.
+}
+
+\Exemple{
+\note[Préparation]{
+Prévoir une animation GeoGebra.
+}
+}
+
+\end{commande}
+
+\begin{commande}{source}{carnopeda}
+
+\Syntaxe{
+\syntaxe{\source{contenu}}
+\syntaxe{\source[titre]{contenu}}
+}
+
+\Arguments{
+\begin{itemize}
+  \item \texttt{titre} : optionnel ;
+  \item \texttt{contenu} : source ou référence.
+\end{itemize}
+}
+
+\Usage{
+Indique une source. Visible uniquement en version notes.
+}
+
+\Exemple{
+\source[Manuel]{
+Exercice inspiré du sujet BTS 2024.
+}
+}
+
+\end{commande}
+
+\begin{commande}{experience}{carnopeda}
+
+\Syntaxe{
+\syntaxe{\experience{contenu}}
+\syntaxe{\experience[titre]{contenu}}
+}
+
+\Arguments{
+\begin{itemize}
+  \item \texttt{titre} : optionnel ;
+  \item \texttt{contenu} : retour d'expérience.
+\end{itemize}
+}
+
+\Usage{
+Retour d'expérience après utilisation. Visible uniquement en version notes.
+}
+
+\Exemple{
+\experience[2026]{
+La partie spectre a nécessité plus de temps que prévu.
+}
+}
+
+\end{commande}
+
+\begin{commande}{todo}{carnopeda}
+
+\Syntaxe{
+\syntaxe{\todo{contenu}}
+\syntaxe{\todo[titre]{contenu}}
+}
+
+\Arguments{
+\begin{itemize}
+  \item \texttt{titre} : optionnel ;
+  \item \texttt{contenu} : tâche à effectuer.
+\end{itemize}
+}
+
+\Usage{
+Liste une tâche à effectuer. Visible uniquement en version notes.
+}
+
+\Exemple{
+\todo[Attention]{
+L'affichage de l'icône dans la marge nécessite deux compilations.
+}
+}
+
+\end{commande}
+
+\begin{commande}{temps}{carnopeda}
+
+\Syntaxe{
+\syntaxe{\temps{minutes}}
+}
+
+\Arguments{
+Un entier correspondant à une durée en minutes.
+}
+
+\Usage{
+Ajoute une indication de temps et l'intègre au total en version notes.
+}
+
+\Exemple{
+L'affichage de l'icône dans la marge nécessite deux compilations. A noter que le cumul apparaît en fin de document. \temps{10}
+}
+
+\end{commande}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Mise en page}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{commande}{col}{carnotex}
+
+\Syntaxe{
+\syntaxe{\col{gauche}{droite}}
+\syntaxe{\col[0.3][0.65]{gauche}{droite}}
+}
+
+\Arguments{
+\begin{itemize}
+  \item première option : largeur relative de la colonne gauche ;
+  \item deuxième option : largeur relative de la colonne droite ;
+  \item \texttt{gauche} : contenu de la colonne gauche ;
+  \item \texttt{droite} : contenu de la colonne droite.
+\end{itemize}
+}
+
+\Usage{
+Place deux blocs côte à côte. Par défaut la moitié chacune. Sinon on précise en option la proportion. Par exemple 0.3 et 0.65 assurent une marge de 0.05.
+}
+
+\Exemple{
+\col{
+Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. Colonne de gauche. 
+}{
+Colonne de droite. Colonne de droite. Colonne de droite. Colonne de droite. Colonne de droite. Colonne de droite. Colonne de droite. Colonne de droite. Colonne de droite. Colonne de droite. Colonne de droite. Colonne de droite. Colonne de droite. Colonne de droite. Colonne de droite. Colonne de droite. Colonne de droite. 
+
+Equitablement réparties. Par défaut $48~\%$ chacune.
+}
+
+\col[0.2][0.75]{Une colonne qui prend $20~\%$ d'un côté. Une colonne qui prend $20~\%$ d'un côté. Une colonne qui prend $20~\%$ d'un côté. Une colonne qui prend $20~\%$ d'un côté. Une colonne qui prend $20~\%$ d'un côté.}{Une autre qui prend $75~\%$ de l'autre. Une autre qui prend $75~\%$ de l'autre. Une autre qui prend $75~\%$ de l'autre. Une autre qui prend $75~\%$ de l'autre. Une autre qui prend $75~\%$ de l'autre. Une autre qui prend $75~\%$ de l'autre. Une autre qui prend $75~\%$ de l'autre.
+
+Avec $5~\%$ de marge entre les deux.
+}
+}
+
+\end{commande}
+
+\clearpage
+\bordure[CarnoExo]{Annexes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Utilitaires}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Cbox{CarnoRem}{Commandes diverses}{
+\begin{itemize}
+  \item \cmd{cqfd} : symbole de fin de démonstration ;
+  \item \cmd{siecle}\argu{21} : \siecle{21} ;
+  \item \cmd{siecle*}\argu{3} : \siecle*{3} ;
+  \item \cmd{rl} : règle verticale invisible pour augmenter la hauteur d'une ligne. Utilisée généralement pour réhausser une racine carrée, laisser de l'espace sous une barre de fraction ou dans une cellule de tableau.
+\end{itemize}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Annexes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Index des commandes publiques}
+
+\begin{multicols}{3}
+\begin{itemize}
+  \item \cmd{bordure}
+  \item \cmd{cadre}
+  \item \cmd{Cbox}
+  \item \cmd{colorline}
+  \item \cmd{col}
+  \item \cmd{coro}
+  \item \cmd{df}
+  \item \cmd{exobandeau}
+  \item \cmd{experience}
+  \item \cmd{histo}
+  \item \cmd{idee}
+  \item \cmd{lem}
+  \item \cmd{level}
+  \item \cmd{note}
+  \item \cmd{obj}
+  \item \cmd{piege}
+  \item \cmd{pre}
+  \item \cmd{prop}
+  \item \cmd{retenir}
+  \item \cmd{source}
+  \item \cmd{temps}
+  \item \cmd{thrm}
+  \item \cmd{todo}
+\end{itemize}
+\end{multicols}
+
+\end{document}

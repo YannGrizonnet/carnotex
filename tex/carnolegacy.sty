@@ -1,0 +1,41 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{carnolegacy}[2026/07/01 v0.1 Compatibilité anciens documents]
+
+\RequirePackage{fancybox}
+\RequirePackage{pifont}
+\RequirePackage{qrcode}
+\RequirePackage{pythonhighlight}
+\RequirePackage{xargs}
+
+\newcommand{\red}[1]{{\color{red}#1}}
+
+\newcommand{\bandeau}[3]{%
+  \Carno@Frame{#1}{#2}{#3}%
+}
+
+\newcommand{\cbox}[3]{%
+  \colorbox{#1!70!white}{%
+    \color{white}\textbf{#2}\strut
+  }%
+  \colorbox{#1!30!white}{#3\strut}%
+}
+
+\NewDocumentCommand{\Cbox}{m m +m}{%
+  \par\medskip
+  \noindent
+  {%
+    \color{#1}%
+    \rule{\CarnoCboxBlockWidth}{\CarnoCboxBlockHeight}%
+    \hspace{0.5em}%
+  }%
+  {\bfseries #2}\\[\CarnoCboxTitleSep]
+  {\color{#1}\rule{\linewidth}{\CarnoCboxRuleWidth}}%
+  \par\smallskip
+  #3%
+  \par\medskip
+}
+
+\newcommand{\ms}{\medskip\\}
+\newcommand{\bs}{\bigskip\\}
+
+\endinput

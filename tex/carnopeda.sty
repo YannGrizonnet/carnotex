@@ -1,0 +1,195 @@
+	%=================================================
+% carnopeda.sty
+% Logique pédagogique des documents
+%=================================================
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{carnopeda}[2026/06/30 v0.8 Logique pédagogique]
+
+\RequirePackage{xparse}
+
+%=================================================
+% Niveaux
+%=================================================
+
+\newif\ifprof
+\newif\ifnotes
+
+\proffalse
+\notesfalse
+
+\newcommand{\level}[1]{%
+  \edef\CarnoPedaLevel{#1}%
+  \def\CarnoPedaEleve{eleve}%
+  \def\CarnoPedaProfLevel{prof}%
+  \def\CarnoPedaNotesLevel{notes}%
+  %
+  \ifx\CarnoPedaLevel\CarnoPedaEleve
+    \proffalse
+    \notesfalse
+  \else
+    \ifx\CarnoPedaLevel\CarnoPedaProfLevel
+      \proftrue
+      \notesfalse
+    \else
+      \ifx\CarnoPedaLevel\CarnoPedaNotesLevel
+        \proftrue
+        \notestrue
+      \else
+        \PackageError{carnopeda}
+          {Niveau inconnu : #1}
+          {Utilisez \string\level{eleve}, \string\level{prof} ou \string\level{notes}.}
+      \fi
+    \fi
+  \fi
+}
+
+%=================================================
+% Commandes internes de logique
+%=================================================
+
+\newcommand{\CarnoPedaProf}[1]{%
+  \ifprof
+    #1%
+  \fi
+}
+
+\newcommand{\CarnoPedaNotes}[1]{%
+  \ifnotes
+    #1%
+  \fi
+}
+
+\newcommand{\CarnoPedaTitle}[2]{%
+  \if\relax\detokenize{#2}\relax
+    #1%
+  \else
+    #1 -- #2%
+  \fi
+}
+
+%=================================================
+% Prof + notes : panneaux pédagogiques
+%=================================================
+
+\newcommand{\idee}[1]{%
+  \CarnoPedaProf{\CarnoPanel{idee}{#1}}
+}
+
+\newcommand{\obj}[1]{%
+  \CarnoPedaProf{\CarnoPanel{obj}{#1}}
+}
+
+\newcommand{\pre}[1]{%
+  \CarnoPedaProf{\CarnoPanel{pre}{#1}}
+}
+
+\newcommand{\oral}[1]{%
+  \CarnoPedaProf{\CarnoPanel{oral}{#1}}
+}
+
+\newcommand{\tab}[1]{%
+  \CarnoPedaProf{\CarnoPanel{tab}{#1}}
+}
+
+\newcommand{\quest}[1]{%
+  \CarnoPedaProf{\CarnoPanel{quest}{#1}}
+}
+
+\newcommand{\piege}[1]{%
+  \CarnoPedaProf{\CarnoPanel{piege}{#1}}
+}
+
+%=================================================
+% Gestion du temps
+%=================================================
+
+\newcounter{CarnoPedaTotalTime}
+
+\NewDocumentCommand{\temps}{m}{%
+  \CarnoPedaProf{%
+    \timemargin{#1}%
+  }%
+  \CarnoPedaNotes{%
+    \timemargin{#1}%
+    \addtocounter{CarnoPedaTotalTime}{#1}%
+  }%
+}
+
+\newcommand{\tempsTotal}{%
+  \CarnoPedaNotes{%
+    \thispagestyle{fancy}%
+    \fancyfoot[C]{%
+      \parbox{\linewidth}{%
+        \centering
+        \rule{0.8\linewidth}{0.4pt}\par
+        \smallskip
+        Temps total estimé : \textbf{\arabic{CarnoPedaTotalTime} min}%
+      }%
+    }%
+  }%
+}
+
+\AtEndDocument{%
+  \ifnotes
+    \bigskip
+    \CarnoPanelTitle{temps}
+      {Temps total estimé}
+      {\arabic{CarnoPedaTotalTime} minutes}
+  \fi
+}
+
+%=================================================
+% Toutes les versions : cadre à retenir
+%=================================================
+
+\newcommand{\retenir}[1]{%
+  \CarnoPanel{retenir}{#1}
+}
+
+%=================================================
+% Notes uniquement : panneaux pédagogiques
+%=================================================
+
+\NewDocumentCommand{\note}{O{} +m}{%
+  \CarnoPedaNotes{%
+    \CarnoPanelTitle{note}
+      {\CarnoPedaTitle{Note personnelle}{#1}}
+      {#2}
+  }
+}
+
+\NewDocumentCommand{\source}{O{} +m}{%
+  \CarnoPedaNotes{%
+    \CarnoPanelTitle{source}
+      {\CarnoPedaTitle{Source}{#1}}
+      {#2}
+  }
+}
+
+\NewDocumentCommand{\experience}{O{} +m}{%
+  \CarnoPedaNotes{%
+    \CarnoPanelTitle{experience}
+      {\CarnoPedaTitle{Retour d'expérience}{#1}}
+      {#2}
+  }
+}
+
+%=================================================
+% TODO
+%=================================================
+
+\newcounter{CarnoPedaTodo}
+
+\NewDocumentCommand{\todo}{s O{} +m}{%
+  \CarnoPedaNotes{%
+    \stepcounter{CarnoPedaTodo}%
+    \todomargin{\theCarnoPedaTodo}%
+    \noindent
+    \todomark{\theCarnoPedaTodo}{#2}%
+    \quad{\small #3}%
+    \par\smallskip
+  }
+}
+
+\endinput
