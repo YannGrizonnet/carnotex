@@ -9,4 +9,7 @@
 *.snm
 *.vrb
 
+# Fresh Editor
+.fresh/
+
 _build/
