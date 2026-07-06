@@ -7,7 +7,14 @@
 \RequirePackage{pythonhighlight}
 \RequirePackage{xargs}
 
-\newcommand{\red}[1]{{\color{red}#1}}
+%-------------------------------------------------
+% Compatibilité GeoGebra PSTricks
+%-------------------------------------------------
+\RequirePackage{pstricks}
+\RequirePackage{pst-plot}
+\RequirePackage{pst-math}
+
+\providecommand{\red}[1]{\textcolor{red}{#1}}
 
 \newcommand{\bandeau}[3]{%
   \Carno@Frame{#1}{#2}{#3}%
