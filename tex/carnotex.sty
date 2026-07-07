@@ -340,12 +340,20 @@
 \NewDocumentCommand{\image}{s O{} m}{%
   \IfBooleanTF{#1}
     {%
-      \includegraphics[
-        width=\linewidth,
-        height=\restepage,
-        keepaspectratio,
-        #2
-      ]{img/#3}%
+      \ifdim\restepage>0pt
+        \includegraphics[
+          width=\linewidth,
+          height=\restepage,
+          keepaspectratio,
+          #2
+        ]{img/#3}%
+      \else
+        \includegraphics[
+          width=\linewidth,
+          keepaspectratio,
+          #2
+        ]{img/#3}%
+      \fi
     }
     {%
       \includegraphics[
