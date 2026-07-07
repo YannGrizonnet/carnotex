@@ -1,4 +1,4 @@
-	%=================================================
+%=================================================
 % carnotex.sty
 % Mise en forme générale des documents
 %=================================================
@@ -38,22 +38,6 @@
 }
 
 \ProcessOptions\relax
-
-%=================================================
-% Chargement optionnel des modules Carno
-%=================================================
-
-\ifCarnoLoadMath
-  \RequirePackage{carnomath}
-\fi
-
-\ifCarnoLoadPeda
-  \RequirePackage{carnopeda}
-\fi
-
-\ifCarnoLoadLegacy
-  \RequirePackage{carnolegacy}
-\fi
 
 %=================================================
 % Langue et polices
@@ -208,8 +192,6 @@
 %=================================================
 % Commandes publiques de mise en forme
 %=================================================
-
-\makeatletter
 
 % Cadres
 \NewDocumentCommand{\cadre}{m O{} +m}{%
@@ -397,5 +379,21 @@
 \renewcommand{\thesection}{\Alph{section}}
 
 \pagestyle{fancy}
+
+%=================================================
+% Chargement optionnel des modules Carno
+%=================================================
+
+\ifCarnoLoadMath
+  \RequirePackage{carnomath}
+\fi
+
+\ifCarnoLoadPeda
+  \RequirePackage{carnopeda}
+\fi
+
+\ifCarnoLoadLegacy
+  \RequirePackage{carnolegacy}
+\fi
 
 \endinput
