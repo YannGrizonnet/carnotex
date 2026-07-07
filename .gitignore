@@ -1,11 +1,11 @@
-# LaTeX
+# Fichiers auxiliaires LaTeX
 *.aux
 *.log
 *.toc
 *.out
-*.synctex.gz
-*.fdb_latexmk
 *.fls
+*.fdb_latexmk
+*.synctex.gz
 *.thm
 *.nav
 *.snm
@@ -16,7 +16,7 @@
 *.bbl
 *.blg
 
-# PDFs générés
+# PDF des tests uniquement
 tests/*.pdf
 
 # Éditeurs
