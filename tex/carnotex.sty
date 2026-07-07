@@ -330,14 +330,37 @@
 }
 
 %=================================================
-% Divers
+% Images
 %=================================================
-
-\newcommand{\rl}{\rule[-1em]{0pt}{2.5em}}
 
 \newcommand{\restepage}{%
   \dimexpr\pagegoal-\pagetotal-\baselineskip\relax
 }
+
+\NewDocumentCommand{\image}{s O{} m}{%
+  \IfBooleanTF{#1}
+    {%
+      \includegraphics[
+        width=\linewidth,
+        height=\restepage,
+        keepaspectratio,
+        #2
+      ]{img/#3}%
+    }
+    {%
+      \includegraphics[
+        width=\linewidth,
+        keepaspectratio,
+        #2
+      ]{img/#3}%
+    }%
+}
+
+%=================================================
+% Divers
+%=================================================
+
+\newcommand{\rl}{\rule[-1em]{0pt}{2.5em}}
 
 \newcommand{\cqfd}{%
   \hfill$\square$%
