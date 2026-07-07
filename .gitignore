@@ -1,3 +1,4 @@
+# LaTeX
 *.aux
 *.log
 *.toc
@@ -8,8 +9,21 @@
 *.nav
 *.snm
 *.vrb
+*.xdv
+*.bbl
+*.bcf
+*.blg
+*.run.xml
 
-# Fresh Editor
-.fresh/
-
+# Build
 _build/
+build/
+
+# Editors
+.fresh/
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
