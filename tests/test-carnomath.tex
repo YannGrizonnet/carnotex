@@ -1,10 +1,15 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Test de validation de carnomath.sty
+%
+% Ce document doit exercer les commandes publiques de carnomath
+% et uniquement celles-ci.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \documentclass[a4paper,11pt]{article}
 
-\usepackage[all]{carnotex}
-\level{notes}
+\usepackage[math]{carnotex}
 
-\title{Test complet CarnoTeX}
-\author{}
+\title{Test carnomath}
 \date{\today}
 
 \begin{document}
@@ -12,148 +17,158 @@
 \maketitle
 \tableofcontents
 
-\section{carnotex}
-
-\cadre{CarnoDef}[Cadre avec titre]{
-Contenu du cadre.
-}
-
-\cadre{CarnoProp}{
-Cadre sans titre.
-}
-
-\Cbox{CarnoIdea}{Bloc documentaire}{
-Contenu de la Cbox.
-}
-
-\colorline[CarnoProp]
-
-\colorline*[CarnoThm][6cm][1pt]
-
-\histo{
-Texte historique.
-}
-
-\exobandeau{Exercice simple}{2}
-
-Énoncé.
-
-\exobandeau[5]{Exercice noté}{4}
-
-Énoncé.
-
-\col{
-Colonne gauche.
-}{
-Colonne droite.
-}
-
-\section{carnomath}
-
-\df{Définition non étoilée.}
-
-\df*{Définition étoilée.}
-
-\prop{Propriété non étoilée.}
-
-\prop*{Propriété étoilée.}
-
-\thrm{Théorème non étoilé.}
-
-\thrm*{Théorème étoilé.}
-
-\lem{Lemme non étoilé.}
-
-\lem*{Lemme étoilé.}
-
-\coro{Corollaire non étoilé.}
-
-\coro*{Corollaire étoilé.}
-
-\exe{Exemple.}
-
-\exo{Exercice.}
-
-\prb{Problème.}
-
-\rem{Remarque.}
-
-\dem{
-Démonstration.
-
-\cqfd
-}
-
-\sol{Solution.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ensembles}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \[
 \N,\quad \Z,\quad \D,\quad \Q,\quad \R,\quad \Cp
 \]
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Vecteurs et coordonnées}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \[
-\vc{AB}
+\vc{u}
 \qquad
+\vc{AB}
+\]
+
+\[
 \coord{2}{3}
 \qquad
+\coord{-2}{5}
+\qquad
+\coord{0}{0}
+\]
+
+\[
 \coor{1}{2}{3}
 \qquad
-\vct{u}{2}{-1}
+\coor{-1}{0}{4}
 \]
+
+\[
+\vct{u}{2}{-1}
+\qquad
+\vct{v}{0}{3}
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Repères}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \Oij
 
 \Oijk
 
-\section{carnopeda}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Définitions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\level{notes}
+\subsection{Version classique}
 
-\obj{
-Objectifs.
+\df{
+Une fonction affine est une fonction de la forme $f(x)=ax+b$.
 }
 
-\pre{
-Prérequis.
+\subsection{Version étoilée}
+
+\df*{
+Une fonction linéaire est une fonction affine vérifiant $b=0$.
 }
 
-\idee{
-Idée pédagogique.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Propriétés}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\prop{
+Toute fonction affine est continue sur $\R$.
 }
 
-\piege{
-Piège classique.
+\prop*{
+La somme de deux fonctions continues est continue.
 }
 
-\retenir{
-À retenir.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Théorèmes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thrm{
+Toute matrice symétrique réelle est diagonalisable.
 }
 
-\note[Préparation]{
-Note personnelle.
+\thrm*{
+Théorème de Pythagore.
 }
 
-\source[Source]{
-Source.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Lemmes et corollaires}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lem{
+Un lemme prépare souvent la démonstration d'un théorème.
 }
 
-\experience[Retour]{
-Retour d'expérience.
+\lem*{
+Ce lemme est mis en valeur.
 }
 
-\todo[À faire]{
-Tâche à faire.
+\coro{
+On en déduit immédiatement le résultat annoncé.
 }
 
-\temps{10}
+\coro*{
+Ce corollaire est mis en valeur.
+}
 
-\section{Utilitaires}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exemples, exercices et problèmes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\exe{
+La fonction $f(x)=2x+3$ est une fonction affine.
+}
+
+\exo{
+Résoudre l'équation $2x+3=7$.
+}
+
+\prb{
+Déterminer toutes les fonctions affines vérifiant $f(0)=1$ et $f(2)=5$.
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Remarques}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\rem{
+Le coefficient directeur peut être nul.
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Démonstrations et solutions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\dem{
+On développe puis on simplifie.
 
 \cqfd
+}
 
-\siecle{21}
+\sol{
+On obtient finalement $x=2$.
+}
 
-\siecle*{3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Utilitaires}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\rl
+\[
+A \subset \R
+\]
+
+\cqfd
 
 \end{document}

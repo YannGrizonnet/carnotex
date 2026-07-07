@@ -1,10 +1,16 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Test de validation de carnopeda.sty
+%
+% Ce document teste toutes les commandes publiques de carnopeda.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \documentclass[a4paper,11pt]{article}
 
-\usepackage[all]{carnotex}
+\usepackage[peda]{carnotex}
+
 \level{notes}
 
-\title{Test complet CarnoTeX}
-\author{}
+\title{Test carnopeda}
 \date{\today}
 
 \begin{document}
@@ -12,148 +18,134 @@
 \maketitle
 \tableofcontents
 
-\section{carnotex}
-
-\cadre{CarnoDef}[Cadre avec titre]{
-Contenu du cadre.
-}
-
-\cadre{CarnoProp}{
-Cadre sans titre.
-}
-
-\Cbox{CarnoIdea}{Bloc documentaire}{
-Contenu de la Cbox.
-}
-
-\colorline[CarnoProp]
-
-\colorline*[CarnoThm][6cm][1pt]
-
-\histo{
-Texte historique.
-}
-
-\exobandeau{Exercice simple}{2}
-
-Énoncé.
-
-\exobandeau[5]{Exercice noté}{4}
-
-Énoncé.
-
-\col{
-Colonne gauche.
-}{
-Colonne droite.
-}
-
-\section{carnomath}
-
-\df{Définition non étoilée.}
-
-\df*{Définition étoilée.}
-
-\prop{Propriété non étoilée.}
-
-\prop*{Propriété étoilée.}
-
-\thrm{Théorème non étoilé.}
-
-\thrm*{Théorème étoilé.}
-
-\lem{Lemme non étoilé.}
-
-\lem*{Lemme étoilé.}
-
-\coro{Corollaire non étoilé.}
-
-\coro*{Corollaire étoilé.}
-
-\exe{Exemple.}
-
-\exo{Exercice.}
-
-\prb{Problème.}
-
-\rem{Remarque.}
-
-\dem{
-Démonstration.
-
-\cqfd
-}
-
-\sol{Solution.}
-
-\[
-\N,\quad \Z,\quad \D,\quad \Q,\quad \R,\quad \Cp
-\]
-
-\[
-\vc{AB}
-\qquad
-\coord{2}{3}
-\qquad
-\coor{1}{2}{3}
-\qquad
-\vct{u}{2}{-1}
-\]
-
-\Oij
-
-\Oijk
-
-\section{carnopeda}
-
-\level{notes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Objectifs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \obj{
-Objectifs.
+À l'issue de cette séance, l'étudiant sera capable de résoudre une équation du premier degré.
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Prérequis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \pre{
-Prérequis.
+Savoir développer et réduire une expression algébrique.
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Idée essentielle}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \idee{
-Idée pédagogique.
+La résolution d'une équation consiste à conserver l'égalité tout en isolant l'inconnue.
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{À dire à l'oral}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\oral{
+Insister sur le fait qu'une même opération est effectuée dans les deux membres.
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Au tableau}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tab{
+Écrire la méthode générale avant de commencer les exemples.
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Questions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\quest{
+Pourquoi peut-on ajouter un même nombre aux deux membres ?
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Pièges}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \piege{
-Piège classique.
+Ne pas oublier de changer le signe lors d'un passage dans l'autre membre.
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{À retenir}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \retenir{
-À retenir.
+Une équation possède le même ensemble de solutions après addition,
+soustraction, multiplication ou division (par un nombre non nul)
+des deux membres par une même quantité.
 }
 
-\note[Préparation]{
-Note personnelle.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Notes personnelles}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\note{
+Prévoir un exercice supplémentaire pour les étudiants en difficulté.
 }
 
-\source[Source]{
-Source.
+\note[Remarque]{
+Ne pas oublier de rappeler la règle des signes.
 }
 
-\experience[Retour]{
-Retour d'expérience.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{TODO}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\todo{
+Ajouter un exercice de synthèse.
 }
 
-\todo[À faire]{
-Tâche à faire.
+\todo[Urgent]{
+Mettre à jour la progression.
 }
 
-\temps{10}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sources}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Utilitaires}
+\source{
+Transmath Première.
+}
 
-\cqfd
+\source[Internet]{
+Banque nationale de sujets.
+}
 
-\siecle{21}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Retour d'expérience}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\siecle*{3}
+\experience{
+Les étudiants comprennent mieux la méthode après une représentation graphique.
+}
 
-\rl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Temps}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\temps{15}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bandeaux d'exercices}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\exobandeau{Application directe}{1}
+
+Calculer les solutions.
+
+\bigskip
+
+\exobandeau[5]{Problème}{4}
+
+Résoudre le problème proposé.
 
 \end{document}
