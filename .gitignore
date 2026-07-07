@@ -3,27 +3,23 @@
 *.log
 *.toc
 *.out
-*.fls
-*.fdb_latexmk
 *.synctex.gz
+*.fdb_latexmk
+*.fls
+*.thm
 *.nav
 *.snm
 *.vrb
 *.xdv
-*.bbl
-*.bcf
-*.blg
 *.run.xml
+*.bcf
+*.bbl
+*.blg
 
-# Build
-_build/
-build/
+# PDFs générés
+tests/*.pdf
 
-# Editors
+# Éditeurs
 .fresh/
 .vscode/
 .idea/
-
-# OS
-.DS_Store
-Thumbs.db

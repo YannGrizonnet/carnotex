@@ -7,6 +7,7 @@
 \ProvidesPackage{carnomath}[2026/06/30 v0.1 Commandes mathématiques]
 
 \RequirePackage{amsmath,amsfonts,amssymb}
+\RequirePackage[amsmath,thmmarks,thref,hyperref]{ntheorem}
 \RequirePackage[locale=FR]{siunitx}
 \RequirePackage{eurosym}
 \RequirePackage{tkz-tab}
@@ -71,6 +72,146 @@
 \newcommand{\Oijk}{%
   $\left(O~;~\vc{\imath},~\vc{\jmath},~\vc{k}\right)$%
 }
+
+%=================================================
+% Théorèmes
+%=================================================
+
+{
+\theoremstyle{plain}
+\theoremheaderfont{\color{black!30!CarnoProp}\bfseries}
+\theorembodyfont{\upshape\normalsize}
+\theoremseparator{.}
+
+\newtheorem{propP}{Propriété}
+\newtheorem{coroP}{Corollaire}
+\newtheorem{lemP}{Lemme}
+}
+
+{
+\theoremstyle{plain}
+\theoremheaderfont{\color{black!30!CarnoThm}\bfseries}
+\theorembodyfont{\upshape\normalsize}
+\theoremseparator{.}
+
+\newtheorem{thrmP}{Théorème}
+}
+
+{
+\theoremstyle{plain}
+\theoremheaderfont{\color{black!30!CarnoDef}\bfseries}
+\theorembodyfont{\upshape\normalsize}
+\theoremseparator{.}
+
+\newtheorem{dfP}{Définition}
+}
+
+{
+\theoremstyle{plain}
+\theoremheaderfont{\color{CarnoExe}\bfseries}
+\theorembodyfont{\upshape\normalsize}
+\theoremseparator{.}
+
+\newtheorem{exe}{Exemple}
+}
+
+{
+\theoremstyle{plain}
+\theoremheaderfont{\color{CarnoExo}\bfseries}
+\theorembodyfont{\upshape\normalsize}
+\theoremseparator{.}
+
+\newtheorem{exo}{Exercice}
+}
+
+{
+\theoremstyle{plain}
+\theoremheaderfont{\color{CarnoPrb}\bfseries}
+\theorembodyfont{\upshape\normalsize}
+\theoremseparator{.}
+
+\newtheorem{prb}{Problème}
+}
+
+{
+\theoremstyle{plain}
+\theoremheaderfont{\color{CarnoRem}\bfseries}
+\theorembodyfont{\upshape\normalsize}
+\theoremseparator{.}
+
+\newtheorem{rem}{Remarque}
+}
+
+{
+\theoremstyle{break}
+\theorembodyfont{\small}
+
+\newtheorem*{dem}{\textcolor{CarnoDem}{Démonstration}}
+\newtheorem*{sol}{\textcolor{CarnoSol}{Solution}}
+}
+
+%=================================================
+% Commandes courtes : théorèmes
+%=================================================
+
+\makeatletter
+
+\NewDocumentCommand{\prop}{s +m}{%
+  \IfBooleanTF{#1}
+    {%
+      \refstepcounter{propP}%
+      \cadre{CarnoProp}[Propriété~\thepropP]{#2}%
+    }
+    {%
+      \propP{#2}%
+    }%
+}
+
+\NewDocumentCommand{\coro}{s +m}{%
+  \IfBooleanTF{#1}
+    {%
+      \refstepcounter{coroP}%
+      \cadre{CarnoProp}[Corollaire~\thecoroP]{#2}%
+    }
+    {%
+      \coroP{#2}%
+    }%
+}
+
+\NewDocumentCommand{\lem}{s +m}{%
+  \IfBooleanTF{#1}
+    {%
+      \refstepcounter{lemP}%
+      \cadre{CarnoProp}[Lemme~\thelemP]{#2}%
+    }
+    {%
+      \lemP{#2}%
+    }%
+}
+
+\NewDocumentCommand{\thrm}{s +m}{%
+  \IfBooleanTF{#1}
+    {%
+      \refstepcounter{thrmP}%
+      \cadre{CarnoThm}[Théorème~\thethrmP]{#2}%
+    }
+    {%
+      \thrmP{#2}%
+    }%
+}
+
+\NewDocumentCommand{\df}{s +m}{%
+  \IfBooleanTF{#1}
+    {%
+      \refstepcounter{dfP}%
+      \cadre{CarnoDef}[Définition~\thedfP]{#2}%
+    }
+    {%
+      \dfP{#2}%
+    }%
+}
+
+\makeatother
 
 %=================================================
 % Fin
