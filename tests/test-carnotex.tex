@@ -1,0 +1,89 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{carnotex}
+
+\title{Test carnotex}
+\date{\today}
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Test de validation de carnotex.sty
+%
+% Ce document doit exercer toutes les commandes publiques du package
+% carnotex et uniquement celles-ci.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+
+\section{Cadres}
+
+\subsection{Version minimale}
+
+\cadre{CarnoDef}{
+Cadre minimal.
+}
+
+\subsection{Version complète}
+
+\cadre{CarnoDef}[Titre]{
+Cadre avec titre.
+}
+
+\subsection{Cadres imbriqués}
+
+\cadre{CarnoProp}{
+Texte.
+
+\cadre{CarnoRem}{
+Cadre interne.
+}
+}
+
+\section{Lignes}
+
+\colorline
+
+\colorline[CarnoProp]
+
+\colorline*[CarnoDef][6cm][1pt]
+
+\section{Historique}
+
+\histo{
+Texte historique.
+}
+
+\section{Exercices}
+
+\exobandeau{Exercice simple}{2}
+
+Énoncé.
+
+\exobandeau[5]{Exercice noté}{4}
+
+Énoncé.
+
+\section{Colonnes}
+
+\col{
+Colonne gauche.
+}{
+Colonne droite.
+}
+
+\col[0.3][0.65]{
+Colonne gauche réduite.
+}{
+Colonne droite large.
+}
+
+\section{Utilitaires}
+
+\siecle{21}
+
+\siecle*{3}
+
+\section{Bordure}
+
+\bordure[CarnoThm]{Test}
+
+\end{document}

@@ -1,0 +1,159 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[all]{carnotex}
+\level{notes}
+
+\title{Test complet CarnoTeX}
+\author{}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{carnotex}
+
+\cadre{CarnoDef}[Cadre avec titre]{
+Contenu du cadre.
+}
+
+\cadre{CarnoProp}{
+Cadre sans titre.
+}
+
+\Cbox{CarnoIdea}{Bloc documentaire}{
+Contenu de la Cbox.
+}
+
+\colorline[CarnoProp]
+
+\colorline*[CarnoThm][6cm][1pt]
+
+\histo{
+Texte historique.
+}
+
+\exobandeau{Exercice simple}{2}
+
+Énoncé.
+
+\exobandeau[5]{Exercice noté}{4}
+
+Énoncé.
+
+\col{
+Colonne gauche.
+}{
+Colonne droite.
+}
+
+\section{carnomath}
+
+\df{Définition non étoilée.}
+
+\df*{Définition étoilée.}
+
+\prop{Propriété non étoilée.}
+
+\prop*{Propriété étoilée.}
+
+\thrm{Théorème non étoilé.}
+
+\thrm*{Théorème étoilé.}
+
+\lem{Lemme non étoilé.}
+
+\lem*{Lemme étoilé.}
+
+\coro{Corollaire non étoilé.}
+
+\coro*{Corollaire étoilé.}
+
+\exe{Exemple.}
+
+\exo{Exercice.}
+
+\prb{Problème.}
+
+\rem{Remarque.}
+
+\dem{
+Démonstration.
+
+\cqfd
+}
+
+\sol{Solution.}
+
+\[
+\N,\quad \Z,\quad \D,\quad \Q,\quad \R,\quad \Cp
+\]
+
+\[
+\vc{AB}
+\qquad
+\coord{2}{3}
+\qquad
+\coor{1}{2}{3}
+\qquad
+\vct{u}{2}{-1}
+\]
+
+\Oij
+
+\Oijk
+
+\section{carnopeda}
+
+\level{notes}
+
+\obj{
+Objectifs.
+}
+
+\pre{
+Prérequis.
+}
+
+\idee{
+Idée pédagogique.
+}
+
+\piege{
+Piège classique.
+}
+
+\retenir{
+À retenir.
+}
+
+\note[Préparation]{
+Note personnelle.
+}
+
+\source[Source]{
+Source.
+}
+
+\experience[Retour]{
+Retour d'expérience.
+}
+
+\todo[À faire]{
+Tâche à faire.
+}
+
+\temps{10}
+
+\section{Utilitaires}
+
+\cqfd
+
+\siecle{21}
+
+\siecle*{3}
+
+\rl
+
+\end{document}
