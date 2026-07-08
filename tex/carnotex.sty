@@ -82,37 +82,13 @@
 \RequirePackage{amsmath}
 
 %=================================================
-% Réglages généraux
+% Paramètres graphiques
 %=================================================
 
 \setlength{\parindent}{0pt}
 \setlength{\fboxrule}{0pt}
 \setlength{\marginparwidth}{1.8cm}
 \setlength{\marginparsep}{4pt}
-
-%=================================================
-% Paramètres graphiques
-%=================================================
-
-\newlength{\CarnoPanelLeftRule}
-\setlength{\CarnoPanelLeftRule}{1.4cm}
-
-\newlength{\CarnoPanelGap}
-\setlength{\CarnoPanelGap}{0.45em}
-
-\newcommand{\CarnoPanelRuleThickness}{0.4pt}
-\newcommand{\CarnoPanelLineWidth}{0.8pt}
-
-\newlength{\CarnoCboxBlockWidth}
-\setlength{\CarnoCboxBlockWidth}{1.2cm}
-
-\newlength{\CarnoCboxBlockHeight}
-\setlength{\CarnoCboxBlockHeight}{1.6ex}
-
-\newlength{\CarnoCboxTitleSep}
-\setlength{\CarnoCboxTitleSep}{-1.5ex}
-
-\newcommand{\CarnoCboxRuleWidth}{0.4pt}
 
 \newlength{\CarnoBordureWidth}
 \setlength{\CarnoBordureWidth}{0.8cm}
@@ -196,36 +172,6 @@
 % Cadres
 \NewDocumentCommand{\cadre}{m O{} +m}{%
   \Carno@Frame{#1}{#2}{#3}%
-}
-
-% Panneaux
-\newcommand{\CarnoPanel}[2]{%
-  \Carno@Panel{#1}{#2}%
-}
-
-\newcommand{\CarnoPanelTitle}[3]{%
-  \Carno@PanelWithTitle{#1}{#2}{#3}%
-}
-
-% Marges
-\newcommand{\margemark}[2]{%
-  \Carno@MarginMark{#1}{#2}%
-}
-
-\newcommand{\todomark}[2]{%
-  \Carno@TodoMark{#1}{#2}%
-}
-
-\newcommand{\todomargin}[1]{%
-  \Carno@TodoMargin{#1}%
-}
-
-\newcommand{\timemargin}[1]{%
-  \Carno@TimeMargin{#1}%
-}
-
-\newcommand{\pointsmargin}[1]{%
-  \Carno@PointsMargin{#1}%
 }
 
 \makeatother
@@ -369,10 +315,6 @@
 %=================================================
 
 \newcommand{\rl}{\rule[-1em]{0pt}{2.5em}}
-
-\newcommand{\cqfd}{%
-  \hfill$\square$%
-}
 
 \makeatletter
 

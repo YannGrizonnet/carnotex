@@ -9,6 +9,19 @@
 \RequirePackage{xparse}
 
 %=================================================
+% Paramètres graphiques
+%=================================================
+
+\newlength{\CarnoPanelLeftRule}
+\setlength{\CarnoPanelLeftRule}{1.4cm}
+
+\newlength{\CarnoPanelGap}
+\setlength{\CarnoPanelGap}{0.45em}
+
+\newcommand{\CarnoPanelRuleThickness}{0.4pt}
+\newcommand{\CarnoPanelLineWidth}{0.8pt}
+
+%=================================================
 % Niveaux
 %=================================================
 
@@ -298,6 +311,40 @@
     \color{CarnoExercise!80!black}
     \textbf{#1 pts}%
   }%
+}
+
+%=================================================
+% Commandes publiques de mise en forme
+%=================================================
+
+% Panneaux
+\newcommand{\CarnoPanel}[2]{%
+  \Carno@Panel{#1}{#2}%
+}
+
+\newcommand{\CarnoPanelTitle}[3]{%
+  \Carno@PanelWithTitle{#1}{#2}{#3}%
+}
+
+% Marges
+\newcommand{\margemark}[2]{%
+  \Carno@MarginMark{#1}{#2}%
+}
+
+\newcommand{\todomark}[2]{%
+  \Carno@TodoMark{#1}{#2}%
+}
+
+\newcommand{\todomargin}[1]{%
+  \Carno@TodoMargin{#1}%
+}
+
+\newcommand{\timemargin}[1]{%
+  \Carno@TimeMargin{#1}%
+}
+
+\newcommand{\pointsmargin}[1]{%
+  \Carno@PointsMargin{#1}%
 }
 
 \makeatother

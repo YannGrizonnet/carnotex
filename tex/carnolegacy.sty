@@ -20,6 +20,25 @@
   \Carno@Frame{#1}{#2}{#3}%
 }
 
+%=================================================
+% Paramètres graphiques
+%=================================================
+
+\newlength{\CarnoCboxBlockWidth}
+\setlength{\CarnoCboxBlockWidth}{1.2cm}
+
+\newlength{\CarnoCboxBlockHeight}
+\setlength{\CarnoCboxBlockHeight}{1.6ex}
+
+\newlength{\CarnoCboxTitleSep}
+\setlength{\CarnoCboxTitleSep}{-1.5ex}
+
+\newcommand{\CarnoCboxRuleWidth}{0.4pt}
+
+%=================================================
+% Anciennes commandes
+%=================================================
+
 \newcommand{\cbox}[3]{%
   \colorbox{#1!70!white}{%
     \color{white}\textbf{#2}\strut
