@@ -22,19 +22,23 @@
 \newif\ifCarnoLoadMath
 \newif\ifCarnoLoadPeda
 \newif\ifCarnoLoadLegacy
+\newif\ifCarnoLoadTikz
 
 \CarnoLoadMathfalse
 \CarnoLoadPedafalse
 \CarnoLoadLegacyfalse
+\CarnoLoadTikzfalse
 
 \DeclareOption{math}{\CarnoLoadMathtrue}
 \DeclareOption{peda}{\CarnoLoadPedatrue}
 \DeclareOption{legacy}{\CarnoLoadLegacytrue}
+\DeclareOption{tikz}{\CarnoLoadTikztrue}
 
 \DeclareOption{all}{%
   \CarnoLoadMathtrue
   \CarnoLoadPedatrue
   \CarnoLoadLegacytrue
+  \CarnoLoadTikztrue
 }
 
 \ProcessOptions\relax
@@ -367,6 +371,10 @@
 
 \ifCarnoLoadLegacy
   \RequirePackage{carnolegacy}
+\fi
+
+\ifCarnoLoadTikz
+  \RequirePackage{carnotikz}
 \fi
 
 \endinput

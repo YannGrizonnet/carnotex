@@ -1,0 +1,49 @@
+% carnotikz.sty
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{carnotikz}[2026/07/09 Figures TikZ et PGFPlots pour Carnotex]
+
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+
+\pgfplotsset{compat=1.18}
+
+\usetikzlibrary{
+  arrows.meta,
+  calc,
+  positioning,
+  decorations.pathreplacing,
+  patterns,
+  shapes.geometric
+}
+
+% Style global des graphiques
+\pgfplotsset{
+  carnoaxis/.style={
+    width=10cm,
+    height=4cm,
+    axis lines=middle,
+    samples=300,
+    xtick=\empty,
+    ytick=\empty,
+    xlabel={$t$},
+    ylabel={$f(t)$},
+    clip=false
+  },
+  carnospectrum/.style={
+    width=10cm,
+    height=4cm,
+    axis lines=middle,
+    ybar,
+    bar width=2pt,
+    ymin=0,
+    xtick=data,
+    ylabel={Amplitude},
+    xlabel={Rang harmonique},
+    clip=false
+  }
+}
+
+% Commande pratique : figure centrée
+\newenvironment{carnofigure}
+  {\begin{center}\begin{tikzpicture}}
+  {\end{tikzpicture}\end{center}}
